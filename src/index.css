@@ -77,7 +77,7 @@ body:before, body:after {
   left: 0;
   right: 0;
   height: 100vh;
-  background: url('./assets/backgroundzap.jpg') no-repeat center / cover;
+  background-color: #0c1317;
   z-index: -1;
 }
 
