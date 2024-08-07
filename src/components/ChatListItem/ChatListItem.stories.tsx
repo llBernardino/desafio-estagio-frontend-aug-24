@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
-import { ChatListItem, ChatListItemProps } from './ChatListItem';
+import { ChatListItem, } from './ChatListItem';
 import hyerdev from '../../assets/hyerdevprofile.png';
+import { ChatListItemProps } from './chatpersondata';
 
 // Exportando a configuração do componente para o Storybook
 export default {

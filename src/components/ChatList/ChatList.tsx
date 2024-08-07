@@ -10,18 +10,20 @@ export const ChatList: React.FC = () => {
 
   const filteredChats = chatperson.filter((person) =>
     person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    person.conversation.toLowerCase().includes(searchTerm.toLowerCase())
+    person.conversation.toLowerCase().includes(searchTerm.toLowerCase()) // pesquisa pelo nome e pela conversa.
   );
 
   return (
     <div className="min-h-screen w-full flex">
-      <ScrollArea className="h-[100vh] bg-[#111b21] border-solid border-2 border-[#222d34]">
+      <ScrollArea className="h-[100%] bg-[#111b21] border-solid border-2 border-[#222d34]">
         {filteredChats.map((person, index) => (
           <div className="py-1" key={index}>
             <ChatListItem 
               conversation={person.conversation}
               name={person.name}
               image={person.image}
+              unread={person.unread} 
+              group={person.group}
             />
           </div>
         ))}

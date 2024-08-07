@@ -1,56 +1,23 @@
-// // components/ChatListSearch/ChatListFilter.jsx
-// import React, { useState } from 'react';
-// import { Dialog, DialogOverlay, DialogContent } from '@reach/dialog'; // Certifique-se de ter um modal de sua escolha
-// import { useChatStore } from '../../store/chatStore';
+// src/components/ChatListFilter/ChatListFilter.tsx
+import React from 'react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
+import { useChatStore } from '@/store/chatStore';
+import { BreadcrumbEllipsis } from '../ui/breadcrumb';
 
-// export const ChatListFilter = () => {
-//   const [isOpen, setIsOpen] = useState(false);
-//   const filter = useChatStore((state) => state.filter);
-//   const setFilter = useChatStore((state) => state.setFilter);
+export const ChatListFilter: React.FC = () => {
+  const { setFilter } = useChatStore();
 
-//   return (
-//     <>
-//       <button onClick={() => setIsOpen(true)}>Filter</button>
-//       {isOpen && (
-//         <Dialog onDismiss={() => setIsOpen(false)}>
-//           <DialogOverlay>
-//             <DialogContent className="filter-modal">
-//               <h2>Filter Chats</h2>
-//               <div>
-//                 <label>
-//                   <input
-//                     type="radio"
-//                     checked={filter === 'all'}
-//                     onChange={() => setFilter('all')}
-//                   />
-//                   All
-//                 </label>
-//               </div>
-//               <div>
-//                 <label>
-//                   <input
-//                     type="radio"
-//                     checked={filter === 'unread'}
-//                     onChange={() => setFilter('unread')}
-//                   />
-//                   Unread
-//                 </label>
-//               </div>
-//               <div>
-//                 <label>
-//                   <input
-//                     type="radio"
-//                     checked={filter === 'groups'}
-//                     onChange={() => setFilter('groups')}
-//                   />
-//                   Groups
-//                 </label>
-//               </div>
-//               <button onClick={() => setIsOpen(false)}>Close</button>
-//             </DialogContent>
-//           </DialogOverlay>
-//         </Dialog>
-//       )}
-//     </>
-//   );
-// };
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger className="flex border-none items-center pr-2 bg-[#111b21]">
+        <BreadcrumbEllipsis className="text-white" />
+      </DropdownMenuTrigger>
+
+      <DropdownMenuContent align="start" className='bg-[#111b21] text-slate-400 border-none'>
+        <DropdownMenuItem onClick={() => setFilter('unread')}>Conversa não lidas</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setFilter('group')}>Grupos</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setFilter('all')}>Todos</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};

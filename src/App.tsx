@@ -1,4 +1,3 @@
-// App.jsx
 import { Head } from "./components/Head/head";
 import { ChatListSearch } from "./components/ChatListSearch/ChatListSearch";
 
@@ -8,7 +7,6 @@ function App() {
       <div>
         <Head />
         <ChatListSearch />
-       
       </div>
     </div>
   );

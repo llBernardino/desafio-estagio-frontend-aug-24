@@ -1,5 +1,5 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { chatperson } from "./chatpersondata";
+import { ChatListItemProps} from "./chatpersondata";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckDouble } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -9,29 +9,19 @@ import {
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
 
-// Defina e exporte a interface ChatListItemProps
-export interface ChatListItemProps {
-  conversation: string;
-  name: string;
-  image: string;
-}
 
-// Lista de produtos
-
-
-// Componente ChatListItem com a interface ChatListItemProps
 export const ChatListItem: React.FC<ChatListItemProps> = ({ conversation, name, image }) => {
   return (
     <section className="ChatListItem">
       <ContextMenu>
         <ContextMenuTrigger>
-          <div className="flex items-center border-container rounded gap-4 py-3 px-5 min-h-20 max-w-xl w-full bg-[#111b21] hover:bg-[#2a3942]">
+          <div className="flex items-center border-container rounded gap-4 py-3 px-4 min-h-20 max-w-xl w-full bg-[#111b21] hover:bg-[#2a3942]">
             <Avatar className="w-14 h-14">
               <AvatarImage src={image} />
             </Avatar>
             <div className="chatbox w-full">
               <div className="flex justify-between">
-                <h1 className="text-lg text-white">{name}</h1>
+                <h1 className="text-lg text-white max-w-sm overflow-hidden whitespace-nowrap text-ellipsis">{name}</h1>
                 <p className="text-xs text-slate-400 flex items-center">Sábado</p>
               </div>
               <div className="textgrup flex items-center max-w-md">

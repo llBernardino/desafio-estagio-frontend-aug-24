@@ -67,7 +67,9 @@
     @apply bg-background text-foreground;
   }
 }
-
+body{
+  overflow: hidden;
+}
 body:before, body:after {
   content: "";
   position: fixed;
@@ -85,8 +87,8 @@ body:after {
 }
 
 .border-container {
-  position: relative; /* Necessário para o posicionamento do pseudo-elemento */
-  padding-bottom: 10px; /* Ajuste conforme necessário */
+  position: relative; 
+  padding-bottom: 10px;
 }
 
 
