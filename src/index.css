@@ -89,6 +89,18 @@ body:after {
   padding-bottom: 10px; /* Ajuste conforme necessário */
 }
 
+
+.search {
+  background-image: url('./assets/magnifying-glass-solid.svg'); 
+  background-size: 18px;
+  background-position: 16px 13px;
+  background-repeat: no-repeat;
+  
+}
+.search:focus {
+  background-image: url('./assets/arrow-right-solid.svg'); 
+}
+
 .border-container::after {
   content: "";
   position: absolute;

@@ -8,7 +8,7 @@ import perfil7 from "../../assets/profileicon6.png";
 
 export const chatperson = [
   {
-    name: 'hyerdev',
+    name: 'Hyerdev',
     conversation: 'Juliana: Oii, vou analisar seu currículo e portfólio online e...',
     image: hyerdev,
   },
