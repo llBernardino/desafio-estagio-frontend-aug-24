@@ -3,7 +3,7 @@ import create from 'zustand';
 
 interface ChatStore {
   searchTerm: string;
-  filter: 'all' | 'unread' | 'group'; // Adicionando o estado para o filtro
+  filter: 'all' | 'unread' | 'group'; // Adicionando o estado para o filtr
   setSearchTerm: (term: string) => void;
   setFilter: (filter: 'all' | 'unread' | 'group') => void; // Função para atualizar o filtro
 }
