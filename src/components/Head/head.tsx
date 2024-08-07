@@ -1,5 +1,5 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import ProfileHead from "../assets/perfil2.png";
+import ProfileHead from "../../assets/perfil2.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faCommentDots, faFolderPlus, faCircleInfo, faUsers } from "@fortawesome/free-solid-svg-icons";
 
