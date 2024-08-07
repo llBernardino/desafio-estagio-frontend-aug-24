@@ -1,5 +1,6 @@
 import { Head } from "./components/Head/head";
 import { ChatListSearch } from "./components/ChatListSearch/ChatListSearch";
+import { ChatList } from "./components/ChatList/ChatList";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <div>
         <Head />
         <ChatListSearch />
+        
       </div>
     </div>
   );

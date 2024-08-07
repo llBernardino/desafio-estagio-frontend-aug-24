@@ -2,38 +2,17 @@
 import React, { useEffect } from 'react';
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
 } from "@/components/ui/command";
-import { ChatListItem } from "../ChatListItem/ChatListItem";
 import { useChatStore } from '@/store/chatStore';
-import { chatperson } from "../ChatListItem/chatpersondata";
 import { ScrollArea } from '../ui/scroll-area';
 import { ChatListFilter } from '../ChatListFilter/ChatListFilter';
+import { ChatList } from '../ChatList/ChatList';
 
 export const ChatListSearch: React.FC = () => {
   const { searchTerm, setSearchTerm, filter, setFilter } = useChatStore();
 
-  const filteredChats = chatperson.filter((person) => {
-    const matchesSearchTerm = person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.conversation.toLowerCase().includes(searchTerm.toLowerCase());
-
-    if (filter === 'all') {
-      return matchesSearchTerm;
-    }
-
-    if (filter === 'unread') {
-      return matchesSearchTerm && person.unread;
-    }
-
-    if (filter === 'group') {
-      return matchesSearchTerm && person.group;
-    }
-
-    return false;
-  });
-
-  const handleFilterChange = (newFilter: 'all' | 'unread' | 'group') => {
+  const handleFilterChange = (newFilter: 'all'| 'unread' | 'group') => {
     setFilter(newFilter);
     const params = new URLSearchParams(location.search);
     params.set('filter', newFilter);
@@ -51,13 +30,12 @@ export const ChatListSearch: React.FC = () => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const searchTermFromURL = params.get('searchTerm') || '';
-    const filterFromURL = params.get('filter') as 'all' | 'unread' | 'group' | null;
-
-    // Define o valor padrão como 'all' se o filtro da URL não for válido
+    const filterFromURL = params.get('filter') as 'unread' | 'group' | 'all' |null;
     setSearchTerm(searchTermFromURL);
     setFilter(filterFromURL || 'all');
   }, [location.search, setSearchTerm, setFilter]);
 
+ 
   return (
     <section className="ChatListSearch" style={{ width: '560px' }}>
       <Command className="rounded-none">
@@ -74,23 +52,9 @@ export const ChatListSearch: React.FC = () => {
           <ChatListFilter onFilterChange={handleFilterChange} />
         </div>
         <ScrollArea className="h-[100vh] text-slate-400 bg-[#111b21] border-solid border-2 border-[#222d34]">
-          {filteredChats.length === 0 ? (
-            <CommandEmpty className="p-5 pt-20 text-center text-lg">Nenhuma conversa, contato ou <br /> mensagem encontrada</CommandEmpty>
-          ) : (
-            <CommandGroup>
-              {filteredChats.map((person, index) => (
-                <div className="py-1" key={index}>
-                  <ChatListItem
-                    conversation={person.conversation}
-                    name={person.name}
-                    image={person.image}
-                    unread={person.unread}
-                    group={person.group}
-                  />
-                </div>
-              ))}
-            </CommandGroup>
-          )}
+          <CommandGroup>
+            <ChatList searchTerm={searchTerm} filter={filter} />
+          </CommandGroup>
         </ScrollArea>
       </Command>
     </section>

@@ -3,14 +3,14 @@ import create from 'zustand';
 
 interface ChatStore {
   searchTerm: string;
-  filter: 'all' | 'unread' | 'group'; // Adicionando o estado para o filtr
+  filter: 'all' | 'unread' | 'group';
   setSearchTerm: (term: string) => void;
-  setFilter: (filter: 'all' | 'unread' | 'group') => void; // Função para atualizar o filtro
+  setFilter: (filter: 'all' | 'unread' | 'group') => void;
 }
 
 export const useChatStore = create<ChatStore>((set) => ({
   searchTerm: '',
-  filter: 'all', // Valor inicial do filtro
+  filter: 'all',
   setSearchTerm: (term) => set({ searchTerm: term }),
   setFilter: (filter) => set({ filter }),
 }));

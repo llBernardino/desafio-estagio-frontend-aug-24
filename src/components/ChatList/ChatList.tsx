@@ -3,19 +3,35 @@ import React from 'react';
 import { ScrollArea } from "../ui/scroll-area";
 import { ChatListItem } from "../ChatListItem/ChatListItem";
 import { chatperson } from "../ChatListItem/chatpersondata";
-import { useChatStore } from "../../store/chatStore";
 
-export const ChatList: React.FC = () => {
-  const { searchTerm } = useChatStore();
+interface ChatListProps {
+  searchTerm: string;
+  filter: 'all' | 'unread' | 'group';
+}
 
-  const filteredChats = chatperson.filter((person) =>
-    person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    person.conversation.toLowerCase().includes(searchTerm.toLowerCase()) // pesquisa pelo nome e pela conversa.
-  );
+export const ChatList: React.FC<ChatListProps> = ({ searchTerm, filter }) => {
+  const filteredChats = chatperson.filter((person) => {
+    const matchesSearchTerm = person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      person.conversation.toLowerCase().includes(searchTerm.toLowerCase());
+
+    if (filter === 'all') {
+      return searchTerm === "" || matchesSearchTerm; 
+    }
+
+    if (filter === 'unread') {
+      return matchesSearchTerm && person.unread;
+    }
+
+    if (filter === 'group') {
+      return matchesSearchTerm && person.group;
+    }
+
+    return false;
+  });
 
   return (
     <div className="min-h-screen w-full flex">
-      <ScrollArea className="h-[100%] bg-[#111b21] border-solid border-2 border-[#222d34]">
+      <ScrollArea>
         {filteredChats.map((person, index) => (
           <div className="py-1" key={index}>
             <ChatListItem 
