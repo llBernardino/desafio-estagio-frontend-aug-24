@@ -1,10 +1,14 @@
-import hyerdevLogo from "/logo-dark.svg";
+import { Head } from "./components/Head/head";
+import { ChatListSearch } from "./components/ChatListSearch/ChatListSearch";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-t from-[#150d21] to-[#180f27] w-full flex items-center justify-center">
-      {" "}
-      <img src={hyerdevLogo} alt="Hyerdev Logo" className="w-[600px]" />
+    <div className="min-h-screen w-full flex pl-16 pt-5">
+      <div>
+        <Head />
+        <ChatListSearch />
+        
+      </div>
     </div>
   );
 }
